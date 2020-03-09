@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:35:44 by crebert           #+#    #+#             */
-/*   Updated: 2019/11/05 19:25:41 by crebert          ###   ########.fr       */
+/*   Updated: 2020/02/18 10:37:39 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ char	*ft_itoa(int nb)
 		nb *= -1;
 	while (nb > 0)
 	{
-		num[index] = nb % 10 + '0';
+		num[index--] = nb % 10 + '0';
 		nb /= 10;
-		index--;
 	}
 	if (nbcpy < 0)
 		num[index] = '-';

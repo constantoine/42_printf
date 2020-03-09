@@ -6,25 +6,30 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 19:21:51 by crebert           #+#    #+#             */
-/*   Updated: 2020/02/18 01:09:33 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 00:24:40 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "format.h"
+#include <limits.h>
 
-static size_t	parse_flags(t_format *format, char *str_format)
+int	parse_flags(t_format *format, const char *str_format)
 {
-	size_t		index;
+	int		index;
 	size_t		flag_pos;
 
 	index = 0;
+	format->flags = 0;
 	if (str_format[0] == '%')
 		format->flags |= PERCENT;
 	if (str_format[0] == '%')
-		return (format);
+		return (1);
 	while (str_format[index] &&
 		(flag_pos = (size_t)ft_strchr(FLAGS, str_format[index])))
-		format->flags |= 1 << (flag_pos - (size_t)&str_format[index++]);
+	{
+		format->flags |= 1 << (flag_pos - (size_t)FLAGS);
+		index++;
+	}
 	if ((format->flags >> 1) & 1u)
 		format->flags &= ~SPACE;
 	if ((format->flags >> 0) & 1u)
@@ -32,10 +37,11 @@ static size_t	parse_flags(t_format *format, char *str_format)
 	return (index);
 }
 
-static size_t	parse_width(t_format *format, char *str_format, va_list args)
+int	parse_width(t_format *format, const char *str_format, va_list args)
 {
-	size_t	index;
+	int	index;
 
+	format->width = 0;
 	index = 0;
 	if (str_format[index] == '*')
 	{
@@ -51,10 +57,11 @@ static size_t	parse_width(t_format *format, char *str_format, va_list args)
 	return (index);
 }
 
-static size_t	parse_prec(t_format *format, char *str_format, va_list args)
+int	parse_prec(t_format *format, const char *str_format, va_list args)
 {
-	size_t	index;
+	int	index;
 
+	format->precision = UINT_MAX;
 	index = 0;
 	while (str_format[index] == '.')
 	{
@@ -74,20 +81,36 @@ static size_t	parse_prec(t_format *format, char *str_format, va_list args)
 	return (index);
 }
 
-static size_t	parse_len(t_format *format, char *str_format)
+int	parse_len(t_format *format, const char *str_format)
 {
-
-}
-
-t_format		*parse_format(t_format *format, char *str_format, va_list args)
-{
-	size_t		index;
-	size_t		flag_pos;
+	size_t	len;
+	int		index;
 
 	index = 0;
-	str_format += (size_t)parse_flags(format, str_format);
-	str_format += (size_t)parse_width(format, str_format, args);
-	str_format += (size_t)parse_prec(format, str_format, args);
-	str_format += (size_t)parse_len(format, str_format);
-	return (format);
+	if (str_format && str_format[index] == 'h' && str_format[index + 1] == 'h')
+	{
+		format->len |= CHAR_HH;
+		index += 2;
+	}
+	if (str_format && str_format[index] == 'l' && str_format[index + 1] == 'l')
+	{
+		format->len |= LONGLONG_LL;
+		index += 2;
+	}
+	if ((len = (size_t)ft_strchr(LEN, str_format[index])))
+		format->len |= 1 << (len - (size_t)LEN);
+	return (index);
+}
+
+int	parse_type(t_format *format, const char *str_format)
+{
+	size_t	len;
+	int		index;
+
+	index = 0;
+	if ((len = (size_t)ft_strchr(TYPE, str_format[index++])))
+		format->type |= 1 << (len - (size_t)TYPE);
+	else
+		index = -1;
+	return (index);
 }
