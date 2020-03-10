@@ -6,20 +6,35 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:05:28 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/10 09:12:22 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 12:21:00 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "conv.h"
+#include <stdio.h>
 
-void	conv(t_printf *pf, va_list args)
+static void	conv(t_printf *pf, va_list args)
 {
-	if (pf->format.type & STRING_S)
-		conv_s(pf, va_arg(args, char *));
+	static void		(*conv[19])(t_printf *pf, va_list args);
+	int				flag;
+
+	flag = -1;
+	if (!conv[12])
+	{
+		conv[9] = conv_x;
+		conv[10] = conv_x_capital;
+		conv[11] = conv_o;
+		conv[12] = conv_s;
+		conv[13] = conv_c;
+		conv[18] = conv_percent;
+	}
+	while (++flag <= 19)
+		if (pf->format.type & (1ul << flag))
+			conv[flag](pf, args);
 }
 
-int		ft_printf(const char *str, ...)
+int			ft_printf(const char *str, ...)
 {
 	t_printf	pf;
 	va_list		args;
@@ -47,7 +62,7 @@ int		ft_printf(const char *str, ...)
 	return (pf.len);
 }
 
-int		main(void)
+int			main(void)
 {
-	ft_printf("ok%+ *.*s%s", -15, -2, "dok", "bit");
+	ft_printf("%X", 0);
 }

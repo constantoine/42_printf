@@ -6,7 +6,7 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:11 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/10 01:12:42 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 12:08:23 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,18 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <stdint.h>
 # include "libft.h"
+
+/*
+** Constant used to calculate argument lenght
+*/
+# define LOG2 0.30102999566
+# define LOG2_8 0.33333333333
 
 # define FLAGS	"-+ 0#"
 
+# define BASE_OCT	"01234567"
 # define BASE_DEC	"0123456789"
 # define BASE_HEX_M	"0123456789abcdef"
 # define BASE_HEX_C	"0123456789ABCDEF"

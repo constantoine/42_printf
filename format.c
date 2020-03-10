@@ -6,7 +6,7 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 19:21:51 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/10 09:12:01 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 10:23:51 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	parse_prec(t_format *format, const char *s, va_list args)
 	index = 0;
 	while (s[index] == '.')
 	{
-		if (s[++index] == '*')
+		if ((format->precision = 0) == 0 && s[++index] == '*')
 		{
 			if ((++index) && (tmp = va_arg(args, int)) < 0)
 			{
