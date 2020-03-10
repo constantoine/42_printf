@@ -6,7 +6,7 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:11 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/09 23:23:03 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 01:12:42 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,12 @@ typedef struct	s_format
 ** (parse_format.c/h)
 */
 
-int	parse_type(t_format *format, const char *str_format);
-int	parse_len(t_format *format, const char *str_format);
-int	parse_prec(t_format *format, const char *str_format, va_list args);
-int	parse_width(t_format *format, const char *str_format, va_list args);
-int	parse_flags(t_format *format, const char *str_format);
+int				parse_type(t_format *format, const char *str_format);
+int				parse_len(t_format *format, const char *str_format);
+int				parse_prec
+					(t_format *format, const char *str_format, va_list args);
+int				parse_width
+					(t_format *format, const char *str_format, va_list args);
+int				parse_flags(t_format *format, const char *str_format);
 
 #endif

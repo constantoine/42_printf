@@ -6,7 +6,7 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 19:21:51 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/10 00:58:17 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 01:13:02 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	parse_flags(t_format *format, const char *str_format)
 {
-	int		index;
+	int			index;
 	size_t		flag_pos;
 
 	index = 0;
@@ -79,7 +79,8 @@ int	parse_prec(t_format *format, const char *str_format, va_list args)
 			format->precision = va_arg(args, unsigned int);
 			index++;
 		}
-		else {
+		else
+		{
 			format->precision = ft_atoi(&str_format[index]) > 0 ?
 				ft_atoi(&str_format[index]) : 0;
 			while (ft_strchr(BASE_DEC, str_format[index]) && str_format[index])

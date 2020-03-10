@@ -6,7 +6,7 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 16:49:36 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/09 23:44:25 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 01:09:29 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int		buffer_flush(t_printf *pf)
 {
 	int	ret;
-	
+
 	ret = write(pf->buffer.fd, pf->buffer.buffer, pf->buffer.index);
 	pf->buffer.index = 0;
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 13:45:06 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/09 23:10:58 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 01:31:10 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@ typedef struct	s_printf
 	t_format	format;
 }				t_printf;
 
-#include "buffer.h"
+/*
+** Buffer related functions
+*/
 
-int ft_printf(const char *str, ...);
+int		buffer_flush(t_printf *pf);
+int		send_to_buffer(t_printf *pf, const char *str, size_t len);
+
+int				ft_printf(const char *str, ...);
 
 #endif
