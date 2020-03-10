@@ -6,7 +6,7 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:05:28 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/10 01:07:47 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 09:12:22 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		ft_printf(const char *str, ...)
 	pf.len = 0;
 	pf.buffer.index = 0;
 	pf.buffer.fd = 1;
-	ft_bzero(pf.buffer.buffer, BUFFER_SIZE);
 	va_start(args, str);
 	while (*str)
 	{
@@ -50,5 +49,5 @@ int		ft_printf(const char *str, ...)
 
 int		main(void)
 {
-	ft_printf("ok%-*.2s%s", 15, "ok", "bit");
+	ft_printf("ok%+ *.*s%s", -15, -2, "dok", "bit");
 }

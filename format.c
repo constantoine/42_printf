@@ -6,7 +6,7 @@
 /*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 19:21:51 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/10 01:13:02 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/10 09:12:01 by crebert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,18 @@ int	parse_width(t_format *format, const char *str_format, va_list args)
 	int	tmp;
 
 	format->width = 0;
-	index = 0;
-	if (str_format[index] == '*')
+	if ((index = 0) == 0 && str_format[0] == '*')
 	{
 		if ((tmp = va_arg(args, int)) < 0)
 		{
 			if (tmp == INT_MIN)
 				format->width = INT_MAX;
 			else
-				format->width *= -1;
+				format->width = tmp * -1;
 			format->flags |= MINUS;
 		}
+		else
+			format->width = tmp;
 		index++;
 	}
 	else
@@ -65,25 +66,29 @@ int	parse_width(t_format *format, const char *str_format, va_list args)
 	return (index);
 }
 
-int	parse_prec(t_format *format, const char *str_format, va_list args)
+int	parse_prec(t_format *format, const char *s, va_list args)
 {
 	int	index;
+	int	tmp;
 
 	format->precision = UINT_MAX;
 	index = 0;
-	while (str_format[index] == '.')
+	while (s[index] == '.')
 	{
-		index++;
-		if (str_format[index] == '*')
+		if (s[++index] == '*')
 		{
-			format->precision = va_arg(args, unsigned int);
-			index++;
+			if ((++index) && (tmp = va_arg(args, int)) < 0)
+			{
+				if (tmp == INT_MIN)
+					format->precision = INT_MAX;
+				else
+					format->precision = tmp * -1;
+			}
 		}
 		else
 		{
-			format->precision = ft_atoi(&str_format[index]) > 0 ?
-				ft_atoi(&str_format[index]) : 0;
-			while (ft_strchr(BASE_DEC, str_format[index]) && str_format[index])
+			format->precision = ft_atoi(&s[index]) > 0 ? ft_atoi(&s[index]) : 0;
+			while (ft_strchr(BASE_DEC, s[index]) && s[index])
 				index++;
 		}
 	}
