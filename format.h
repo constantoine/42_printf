@@ -6,7 +6,7 @@
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:11 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/28 16:11:38 by cleo             ###   ########.fr       */
+/*   Updated: 2020/03/28 16:27:47 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ typedef struct	s_format
 	enum e_len		len;
 	enum e_type		type;
 	void			*infos;
-
 }				t_format;
 
 /*
