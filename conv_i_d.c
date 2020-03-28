@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_x.c                                           :+:      :+:    :+:   */
+/*   conv_i_d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 11:53:41 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/28 16:23:46 by cleo             ###   ########.fr       */
+/*   Created: 2020/03/28 15:36:13 by cleo              #+#    #+#             */
+/*   Updated: 2020/03/28 16:15:03 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,26 @@
 #include "conv.h"
 #include <limits.h>
 
-void	conv_x(t_printf *pf, va_list args)
+void	conv_d(t_printf *pf, va_list args)
 {
-	char	str[sizeof(uintmax_t) * 2 + 2];
+	char	str[(uint8_t)(sizeof(uintmax_t) * 8 * LOG2) + 2];
 	char	*ptr;
 	int		width;
 	int		prec;
 	uint8_t	len;
 
-	len = sizeof(uintmax_t) * 2 + 2;
+	len = (uint8_t)(sizeof(uintmax_t) * 8 * LOG2) + 2;
 	pf->format.infos = &len;
 	prec = pf->format.precision;
 	width = pf->format.width;
 	pf->format.width = (width > prec ? width : prec);
-	pf->format.precision = UINT_MAX;
-	ptr = ft_itoa_base_pf(va_arg(args, unsigned int),
-		BASE_HEX_M, str, &(pf->format));
+	pf->format.precision = pf->format.precision ? UINT_MAX : 0;
+	ptr = ft_itoa_base_pf_signed(va_arg(args, unsigned int),
+							BASE_DEC, str, &(pf->format));
 	conv_s_str(pf, ptr);
 }
 
-void	conv_x_capital(t_printf *pf, va_list args)
+void	conv_i(t_printf *pf, va_list args)
 {
-	char	str[sizeof(uintmax_t) * 2 + 2];
-	char	*ptr;
-	int		width;
-	int		prec;
-	uint8_t	len;
-
-	len = sizeof(uintmax_t) * 2 + 2;
-	pf->format.infos = &len;
-	prec = pf->format.precision;
-	width = pf->format.width;
-	pf->format.width = (width > prec ? width : prec);
-	pf->format.precision = UINT_MAX;
-	ptr = ft_itoa_base_pf(va_arg(args, unsigned int),
-		BASE_HEX_C, str, &(pf->format));
-	conv_s_str(pf, ptr);
+	conv_d(pf, args);
 }

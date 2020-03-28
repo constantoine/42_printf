@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   format.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crebert <crebert@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:11 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/10 12:08:23 by crebert          ###   ########.fr       */
+/*   Updated: 2020/03/28 16:11:38 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct	s_format
 	unsigned int	precision;
 	enum e_len		len;
 	enum e_type		type;
+	void			*infos;
 
 }				t_format;
 
