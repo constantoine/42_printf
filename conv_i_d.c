@@ -6,7 +6,7 @@
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 15:36:13 by cleo              #+#    #+#             */
-/*   Updated: 2020/03/28 16:15:03 by cleo             ###   ########.fr       */
+/*   Updated: 2020/03/29 16:52:16 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	conv_d(t_printf *pf, va_list args)
 	pf->format.precision = pf->format.precision ? UINT_MAX : 0;
 	ptr = ft_itoa_base_pf_signed(va_arg(args, unsigned int),
 							BASE_DEC, str, &(pf->format));
+	pf->format.precision = UINT_MAX;
 	conv_s_str(pf, ptr);
 }
 
