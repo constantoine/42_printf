@@ -6,7 +6,7 @@
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 11:53:41 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/29 16:55:47 by cleo             ###   ########.fr       */
+/*   Updated: 2020/03/30 12:02:18 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 void	conv_x(t_printf *pf, va_list args)
 {
-	char	str[sizeof(uintmax_t) * 2 + 2];
+	char	str[BASE_16_LEN];
 	char	*ptr;
 	int		width;
 	int		prec;
 	uint8_t	len;
 
-	len = sizeof(uintmax_t) * 2 + 2;
+	len = BASE_16_LEN;
 	pf->format.infos = &len;
 	prec = pf->format.precision;
 	width = pf->format.width;
@@ -43,13 +43,13 @@ void	conv_x(t_printf *pf, va_list args)
 
 void	conv_x_capital(t_printf *pf, va_list args)
 {
-	char	str[sizeof(uintmax_t) * 2 + 2];
+	char	str[BASE_16_LEN];
 	char	*ptr;
 	int		width;
 	int		prec;
 	uint8_t	len;
 
-	len = sizeof(uintmax_t) * 2 + 2;
+	len = BASE_16_LEN;
 	pf->format.infos = &len;
 	prec = pf->format.precision;
 	width = pf->format.width;

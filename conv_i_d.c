@@ -6,7 +6,7 @@
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 15:36:13 by cleo              #+#    #+#             */
-/*   Updated: 2020/03/29 16:52:16 by cleo             ###   ########.fr       */
+/*   Updated: 2020/03/30 12:01:41 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 void	conv_d(t_printf *pf, va_list args)
 {
-	char	str[(uint8_t)(sizeof(uintmax_t) * 8 * LOG2) + 2];
+	char	str[BASE_10_LEN];
 	char	*ptr;
 	int		width;
 	int		prec;
 	uint8_t	len;
 
-	len = (uint8_t)(sizeof(uintmax_t) * 8 * LOG2) + 2;
+	len = BASE_10_LEN;
 	pf->format.infos = &len;
 	prec = pf->format.precision;
 	width = pf->format.width;

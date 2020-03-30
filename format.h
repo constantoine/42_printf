@@ -6,7 +6,7 @@
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:11 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/28 16:27:47 by cleo             ###   ########.fr       */
+/*   Updated: 2020/03/30 12:00:57 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 /*
 ** Constant used to calculate argument lenght
 */
-# define LOG2 0.30102999566
-# define LOG2_8 0.33333333333
+# define BASE_8_LEN 26
+# define BASE_10_LEN 24
+# define BASE_16_LEN 20
 
 # define FLAGS	"-+ 0#"
 
