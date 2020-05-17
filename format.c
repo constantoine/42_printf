@@ -6,7 +6,7 @@
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 19:21:51 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/28 15:43:36 by cleo             ###   ########.fr       */
+/*   Updated: 2020/04/04 18:35:24 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ int	parse_flags(t_format *format, const char *str_format)
 		format->flags |= 1 << (flag_pos - (size_t)FLAGS);
 		index++;
 	}
-	if ((format->flags >> 1) & 1u)
-		format->flags &= ~SPACE;
-	if ((format->flags >> 0) & 1u)
-		format->flags &= ~ZERO;
 	return (index);
 }
 
@@ -77,13 +73,9 @@ int	parse_prec(t_format *format, const char *s, va_list args)
 	{
 		if ((format->precision = 0) == 0 && s[++index] == '*')
 		{
-			if ((++index) && (tmp = va_arg(args, int)) < 0)
-			{
-				if (tmp == INT_MIN)
-					format->precision = INT_MAX;
-				else
-					format->precision = tmp * -1;
-			}
+			index++;
+			tmp = va_arg(args, int);
+			format->precision = tmp >= 0 ? (unsigned int)tmp : UINT_MAX;
 		}
 		else
 		{

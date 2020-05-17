@@ -6,12 +6,13 @@
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:05:28 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/30 13:28:12 by cleo             ###   ########.fr       */
+/*   Updated: 2020/04/04 15:28:57 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "conv.h"
+#include "parse_format.h"
 #include <stdio.h>
 
 static void	conv(t_printf *pf, va_list args)
@@ -62,9 +63,4 @@ int			ft_printf(const char *str, ...)
 	if ((ret = buffer_flush(&pf)) != -1)
 		pf.len += ret;
 	return (pf.len);
-}
-
-int			main(void)
-{
-	ft_printf("%x\n", 0);
 }

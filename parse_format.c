@@ -6,7 +6,7 @@
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:12:20 by crebert           #+#    #+#             */
-/*   Updated: 2020/03/28 15:39:50 by cleo             ###   ########.fr       */
+/*   Updated: 2020/04/04 17:18:24 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,9 @@ int	parse_format(t_format *format, const char *str_format, va_list args)
 	index = (parse_type(format, &str_format[index]) == 1 ? index + 1 : -1);
 	if (index == -1)
 		format->flags |= ERROR;
+	if (format->flags & PLUS && format->flags & SPACE)
+		format->flags &= ~SPACE;
+	if (format->flags & MINUS && format->flags & ZERO)
+		format->flags &= ~ZERO;
 	return (index);
 }
