@@ -3,7 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/libft"
+                "${workspaceFolder}/42_libft"
             ],
             "defines": [
                 "_DEBUG",
@@ -11,10 +11,10 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.17763.0",
-            "compilerPath": "\"C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/gcc.exe\"",
+            "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64"
+            "intelliSenseMode": "clang-x64"
         }
     ],
     "version": 4
