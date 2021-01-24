@@ -23,8 +23,6 @@ static void	conv(t_printf *pf, va_list args)
 	flag = -1;
 	if (!conv[12])
 	{
-		conv[0] = conv_d;
-		conv[1] = conv_i;
 		conv[2] = conv_u;
 		conv[9] = conv_x;
 		conv[10] = conv_x_capital;
@@ -35,7 +33,8 @@ static void	conv(t_printf *pf, va_list args)
 	}
 	while (++flag <= 19)
 		if (pf->format.type & (1ul << flag))
-			conv[flag](pf, args);
+			if (conv[flag])
+				conv[flag](pf, args);
 }
 
 int			ft_printf(const char *str, ...)
@@ -62,5 +61,6 @@ int			ft_printf(const char *str, ...)
 	}
 	if ((ret = buffer_flush(&pf)) != -1)
 		pf.len += ret;
+	va_end(args);
 	return (pf.len);
 }
