@@ -14,6 +14,7 @@
 #include "ft_printf.h"
 #include "conv.h"
 #include <limits.h>
+#include <stdio.h>
 
 void	conv_x(t_printf *pf, va_list args)
 {
@@ -28,7 +29,6 @@ void	conv_x(t_printf *pf, va_list args)
 	prec = pf->format.precision;
 	width = pf->format.width;
 	pf->format.width = (width > prec ? width : prec);
-	pf->format.precision = pf->format.precision ? UINT_MAX : 0;
 	ptr = ft_itoa_base_pf(va_arg(args, unsigned int),
 		BASE_HEX_M, str, &(pf->format));
 	if (*ptr != 0 && *ptr != '0' && pf->format.flags & HASH)
@@ -37,7 +37,8 @@ void	conv_x(t_printf *pf, va_list args)
 		ptr[-2] = '0';
 		ptr = &ptr[-2];
 	}
-	pf->format.precision = UINT_MAX;
+	if (pf->format.width <= (unsigned int)prec)
+		pf->format.flags |= ZERO;
 	conv_s_str(pf, ptr);
 }
 
@@ -54,7 +55,6 @@ void	conv_x_capital(t_printf *pf, va_list args)
 	prec = pf->format.precision;
 	width = pf->format.width;
 	pf->format.width = (width > prec ? width : prec);
-	pf->format.precision = pf->format.precision ? UINT_MAX : 0;
 	ptr = ft_itoa_base_pf(va_arg(args, unsigned int),
 		BASE_HEX_C, str, &(pf->format));
 	if (*ptr != 0 && *ptr != '0' && pf->format.flags & HASH)
@@ -63,5 +63,7 @@ void	conv_x_capital(t_printf *pf, va_list args)
 		ptr[-2] = '0';
 		ptr = &ptr[-2];
 	}
+	if (pf->format.width <= (unsigned int)prec)
+		pf->format.flags |= ZERO;
 	conv_s_str(pf, ptr);
 }
