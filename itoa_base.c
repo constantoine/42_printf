@@ -70,7 +70,7 @@ char		*ft_itoa_base_pf
 		dst[0] = 0;
 	if (format->precision == 0 && nbr == 0)
 		return (dst);
-	dst[len] = 0;
-	dst[len - 1] = base[0];
-	return (ft_putnbr_base2(nbr, len - 1, dst, base));
+	dst[len - 1] = 0;
+	dst[len - 2] = base[0];
+	return (ft_putnbr_base2(nbr, len - 2, dst, base));
 }
