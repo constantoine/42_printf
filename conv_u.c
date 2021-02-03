@@ -17,7 +17,7 @@
 
 void	conv_u(t_printf *pf, va_list args)
 {
-	char	str[BASE_10_LEN];
+	char	str[BASE_8_LEN];
 	char	*ptr;
 	int		width;
 	int		prec;

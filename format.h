@@ -21,9 +21,9 @@
 /*
 ** Constant used to calculate argument lenght
 */
-# define BASE_8_LEN 26
-# define BASE_10_LEN 24
-# define BASE_16_LEN 20
+# define BASE_8_LEN 27
+# define BASE_10_LEN 25
+# define BASE_16_LEN 21
 
 # define FLAGS	"-+ 0#"
 
