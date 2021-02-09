@@ -6,7 +6,7 @@
 /*   By: cleo <cleo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:05:28 by crebert           #+#    #+#             */
-/*   Updated: 2020/04/04 15:28:57 by cleo             ###   ########.fr       */
+/*   Updated: 2021/02/09 14:40:26 by cleo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	conv(t_printf *pf, va_list args)
 	flag = -1;
 	if (!conv[12])
 	{
+		conv[0] = conv_d;
+		conv[1] = conv_i;
 		conv[2] = conv_u;
 		conv[9] = conv_x;
 		conv[10] = conv_x_capital;
