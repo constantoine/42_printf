@@ -37,11 +37,11 @@ int	parse_width(t_format *format, const char *str_format, va_list args)
 {
 	int	index;
 	int	tmp;
-
-	format->width = 0;
+ 
 	if ((index = 0) == 0 && str_format[0] == '*')
 	{
-		if ((tmp = va_arg(args, int)) < 0)
+		format->flags |= WIDTH;
+		if ((tmp = va_arg(args, int)) < 0 && index++)
 		{
 			if (tmp == INT_MIN)
 				format->width = INT_MAX;
@@ -51,13 +51,14 @@ int	parse_width(t_format *format, const char *str_format, va_list args)
 		}
 		else
 			format->width = tmp;
-		index++;
 	}
 	else
 	{
 		format->width = ft_atoi(str_format);
 		while (ft_strchr(BASE_DEC, str_format[index]) && str_format[index])
 			index++;
+		if (index != 0)
+			format->flags |= WIDTH;
 	}
 	return (index);
 }
@@ -67,21 +68,25 @@ int	parse_prec(t_format *format, const char *s, va_list args)
 	int	index;
 	int	tmp;
 
-	format->precision = UINT_MAX;
 	index = 0;
 	while (s[index] == '.')
 	{
 		if ((format->precision = 0) == 0 && s[++index] == '*')
 		{
-			index++;
 			tmp = va_arg(args, int);
-			format->precision = tmp >= 0 ? (unsigned int)tmp : UINT_MAX;
+			if ((tmp = va_arg(args, int)) >= 0 && index++)
+				format->precision = (unsigned int)tmp;
+			if ((tmp = va_arg(args, int)) >= 0)
+				format->flags |= PRECISION;
 		}
 		else
 		{
 			format->precision = ft_atoi(&s[index]) > 0 ? ft_atoi(&s[index]) : 0;
 			while (ft_strchr(BASE_DEC, s[index]) && s[index])
+			{
 				index++;
+				format->flags |= PRECISION;
+			}
 		}
 	}
 	return (index);

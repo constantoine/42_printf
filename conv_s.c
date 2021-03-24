@@ -13,46 +13,33 @@
 #include "format.h"
 #include "ft_printf.h"
 
-void	conv_s_str(t_printf *pf, char *str)
-{
+void	conv_s_str(t_printf *pf, char *str) {
 	size_t	len;
-	size_t	padlen;
+	size_t	to_print;
+	size_t	padding;
 	char	pad;
 
 	pad = pf->format.flags & ZERO ? '0' : ' ';
-	str = str ? str : NULL_STR;
-	len = pf->format.precision < ft_strlen(str) ?
-		pf->format.precision : ft_strlen(str);
-	padlen = pf->format.width > len ? pf->format.width - len : 0;
+	len = ft_strlen(str);
+	to_print = len;
+	padding = 0;
+	if (pf->format.flags & PRECISION && pf->format.precision < len)
+		to_print = pf->format.precision;
+	if (pf->format.flags & WIDTH && pf->format.width > to_print)
+		padding = pf->format.width - to_print;
 	if (!(pf->format.flags & MINUS))
-		while (padlen--)
+		while (padding--)
 			pf->len += send_to_buffer(pf, &pad, 1);
-	pf->len += send_to_buffer(pf, str, len);
-	if (pf->format.flags & MINUS)
-		while (padlen--)
-			pf->len += send_to_buffer(pf, &pad, 1);
+	pf->len += send_to_buffer(pf, str, to_print);
+	while (padding--)
+		pf->len += send_to_buffer(pf, &pad, 1);	
 }
 
 void	conv_s(t_printf *pf, va_list args)
 {
-	size_t	len;
-	size_t	padlen;
 	char	*str;
 
 	str = va_arg(args, char *);
 	str = str ? str : NULL_STR;
-	len = pf->format.precision < ft_strlen(str) ?
-		pf->format.precision : ft_strlen(str);
-	padlen = pf->format.width > len ? pf->format.width - len : 0;
-	if (!padlen)
-		pf->len += send_to_buffer(pf, str, len);
-	if (!padlen)
-		return ;
-	if (!(pf->format.flags & MINUS))
-		while (padlen--)
-			pf->len += send_to_buffer(pf, " ", 1);
-	pf->len += send_to_buffer(pf, str, len);
-	if (pf->format.flags & MINUS)
-		while (padlen--)
-			pf->len += send_to_buffer(pf, " ", 1);
+	conv_s_str(pf, str);
 }

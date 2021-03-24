@@ -45,7 +45,9 @@ enum	e_flag
 	ZERO = (1u << 3),
 	HASH = (1u << 4),
 	PERCENT = (1u << 5),
-	ERROR = (1u << 7)
+	ERROR = (1u << 7),
+	PRECISION = (1u << 8),
+	WIDTH = (1u << 9),
 };
 
 enum	e_len
