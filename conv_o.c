@@ -19,13 +19,13 @@ void	conv_o(t_printf *pf, va_list args)
 {
 	char			str[BASE_8_LEN];
 	char			*ptr;
-	unsigned int 	num;
+	uintmax_t		num;
 	char			sign;
 	uint8_t			len;
 
 	ft_bzero(str, BASE_8_LEN);
 	len = BASE_8_LEN;
-	num = va_arg(args, unsigned int);
+	num = len_unsigned(pf, args);
 	pf->format.infos = &len;
 	ptr = ft_itoa_base_pf(num, BASE_OCT, str, &(pf->format));
 	if (!(sign = 0) && num && pf->format.flags & HASH)

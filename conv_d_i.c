@@ -66,13 +66,13 @@ void			conv_num(t_printf *pf, char *str, char sign)
 
 void			conv_d(t_printf *pf, va_list args)
 {
-	int		num;
-	char	str[BASE_10_LEN];
-	char	*str_final;
-	uint8_t	len;
-	char	sign;
+	intmax_t	num;
+	char		str[BASE_10_LEN];
+	char		*str_final;
+	uint8_t		len;
+	char		sign;
 
-	num = va_arg(args, int);
+	num = len_signed(pf, args);
 	len = BASE_10_LEN;
 	ft_bzero(str, BASE_10_LEN);
 	pf->format.infos = &len;

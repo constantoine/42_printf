@@ -13,7 +13,8 @@
 #include "format.h"
 #include "ft_printf.h"
 
-void	conv_s_str(t_printf *pf, char *str) {
+void	conv_s_str(t_printf *pf, char *str)
+{
 	size_t	len;
 	size_t	to_print;
 	int		padding;

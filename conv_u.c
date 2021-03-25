@@ -17,15 +17,14 @@
 
 void			conv_u(t_printf *pf, va_list args)
 {
-	unsigned int	num;
+	uintmax_t		num;
 	char			str[BASE_10_LEN];
 	char			*str_final;
 	uint8_t			len;
 	char			sign;
 
-	if (pf->format.flags & PLUS)
-		pf->format.flags &= ~PLUS;
-	num = va_arg(args, unsigned int);
+	pf->format.flags &= ~PLUS;
+	num = len_unsigned(pf, args);
 	len = BASE_10_LEN;
 	pf->format.infos = &len;
 	ft_bzero(str, BASE_10_LEN);

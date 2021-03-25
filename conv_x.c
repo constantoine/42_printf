@@ -18,15 +18,14 @@
 
 void			conv_x(t_printf *pf, va_list args)
 {
-	unsigned int	num;
+	uintmax_t		num;
 	char			str[BASE_16_LEN];
 	char			*str_final;
 	uint8_t			len;
 	char			sign;
 
-	if (pf->format.flags & PLUS)
-		pf->format.flags &= ~PLUS;
-	num = va_arg(args, unsigned int);
+	pf->format.flags &= ~PLUS;
+	num = len_unsigned(pf, args);
 	len = BASE_16_LEN;
 	ft_bzero(str, BASE_16_LEN);
 	pf->format.infos = &len;
@@ -43,15 +42,14 @@ void			conv_x(t_printf *pf, va_list args)
 
 void			conv_x_capital(t_printf *pf, va_list args)
 {
-	unsigned int	num;
+	uintmax_t		num;
 	char			str[BASE_16_LEN];
 	char			*str_final;
 	uint8_t			len;
 	char			sign;
 
-	if (pf->format.flags & PLUS)
-		pf->format.flags &= ~PLUS;
-	num = va_arg(args, unsigned int);
+	pf->format.flags &= ~PLUS;
+	num = len_unsigned(pf, args);
 	len = BASE_16_LEN;
 	ft_bzero(str, BASE_16_LEN);
 	pf->format.infos = &len;
