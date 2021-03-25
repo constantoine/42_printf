@@ -23,7 +23,7 @@ int	parse_flags(t_format *format, const char *str_format)
 	if (str_format[0] == '%')
 		format->flags |= PERCENT;
 	if (str_format[0] == '%')
-		return (1);
+		return (0);
 	while (str_format[index] &&
 			(flag_pos = (size_t)ft_strchr(FLAGS, str_format[index])))
 	{
@@ -68,21 +68,22 @@ int	parse_prec(t_format *format, const char *s, va_list args)
 	index = 0;
 	while (s[index] == '.')
 	{
+		format->flags |= PRECISION;
 		if ((format->precision = 0) == 0 && s[++index] == '*')
 		{
 			tmp = va_arg(args, int);
-			if (index++ && (format->flags |= PRECISION) && tmp > 0)
+			if (index++ && tmp > 0)
 				format->precision = (unsigned int)tmp;
 		}
 		else
 		{
-			format->precision = ft_atoi(&s[index]) > 0 ? ft_atoi(&s[index]) : 0;
+			tmp = ft_atoi(&s[index]);
+			format->precision = tmp;
 			while (ft_strchr(BASE_DEC, s[index]) && s[index])
-			{
 				index++;
-				format->flags |= PRECISION;
-			}
 		}
+		if (tmp < 0)
+			format->flags &= ~PRECISION;
 	}
 	return (index);
 }

@@ -16,7 +16,6 @@
 
 void	conv_percent(t_printf *pf, va_list args)
 {
-	pf->format.precision = 1;
-	pf->format.width = 0;
-	conv_c(pf, args);
+	(void)args;
+	pf->len += send_to_buffer(pf, "%", 1);
 }
