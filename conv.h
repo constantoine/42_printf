@@ -18,6 +18,7 @@ void	conv_i(t_printf *pf, va_list args);
 void	conv_u(t_printf *pf, va_list args);
 void	conv_x(t_printf *pf, va_list args);
 void	conv_x_capital(t_printf *pf, va_list args);
+void	conv_n(t_printf *pf, va_list args);
 void	conv_o(t_printf *pf, va_list args);
 void	conv_s(t_printf *pf, va_list args);
 void	conv_c(t_printf *pf, va_list args);
@@ -30,7 +31,5 @@ void			conv_s_str(t_printf *pf, char *str);
 char			*ft_itoa_base_pf
 	(uintmax_t nbr, char *base, char *dst, t_format *format);
 char			*ft_itoa_noalloc(uintmax_t nb, char *num, size_t size);
-char			*ft_itoa_base_pf_signed
-	(int nbr, char *base, char *dst, t_format *format);
 
 #endif

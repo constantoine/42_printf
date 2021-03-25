@@ -86,24 +86,5 @@ void			conv_d(t_printf *pf, va_list args)
 
 void			conv_i(t_printf *pf, va_list args)
 {
-	int		num;
-	char	str[BASE_10_LEN];
-	char	*str_final;
-	uint8_t	len;
-	char	sign;
-
-	num = va_arg(args, int);
-	len = BASE_10_LEN;
-	pf->format.infos = &len;
-	str_final = ft_itoa_noalloc(ft_abs(num), str, BASE_10_LEN);
-	//printf("atoi: %d->%d->%s\n", ft_abs(num), num, str_final);
-	if (!(sign = 0) && num < 0)
-		sign = '-';
-	else if (pf->format.flags & PLUS)
-		sign = '+';
-	else if (pf->format.flags & SPACE)
-		sign = ' ';
-	if (!num && pf->format.flags & PRECISION && !pf->format.precision)
-		str_final[0] = 0;
-	conv_num(pf, str_final, sign);
+	conv_d(pf, args);
 }

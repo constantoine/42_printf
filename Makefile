@@ -28,12 +28,12 @@ SRC:= $(SRC) 42_libft/ft_itoa.c 42_libft/ft_strtrim.c
 SRC:= $(SRC) 42_libft/ft_strncmp.c 42_libft/ft_strjoin.c
 SRC:= $(SRC) 42_libft/ft_strlcat.c 42_libft/ft_strlcpy.c
 SRC:= $(SRC) 42_libft/ft_substr.c 42_libft/ft_strmapi.c
-SRC:= $(SRC) itoa_base.c itoa_base_signed.c ft_printf.c format.c conv_x.c conv_u.c
+SRC:= $(SRC) itoa_base.c ft_printf.c format.c conv_x.c conv_u.c
 SRC:= $(SRC) conv_percent.c conv_o.c conv_c.c buffer.c conv_s.c conv_d_i.c
-SRC:= $(SRC) format.c parse_format.c
+SRC:= $(SRC) format.c parse_format.c conv_n.c conv_p.c
 OBJ= $(SRC:.c=.o)
 CC = gcc
-CFLAGS =-fsanitize=address -g -Wall -Wextra -Werror -I42_libft
+CFLAGS =-Wall -Wextra -Werror -I42_libft
 NAME=libftprintf.a
 
 all: $(NAME)
