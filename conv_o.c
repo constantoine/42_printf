@@ -17,25 +17,20 @@
 
 void	conv_o(t_printf *pf, va_list args)
 {
-	char	str[BASE_8_LEN];
-	char	*ptr;
-	int		width;
-	int		prec;
-	uint8_t	len;
+	char			str[BASE_8_LEN];
+	char			*ptr;
+	unsigned int 	num;
+	char			sign;
+	uint8_t			len;
 
+	ft_bzero(str, BASE_8_LEN);
 	len = BASE_8_LEN;
+	num = va_arg(args, unsigned int);
 	pf->format.infos = &len;
-	prec = pf->format.precision;
-	width = pf->format.width;
-	pf->format.width = (width > prec ? width : prec);
-	pf->format.precision = pf->format.precision ? UINT_MAX : 0;
-	ptr = ft_itoa_base_pf(va_arg(args, unsigned int),
-		BASE_OCT, str, &(pf->format));
-	if (*ptr != 0 && *ptr != '0' && pf->format.flags & HASH)
-	{
-		ptr[-1] = '0';
-		ptr = &ptr[-1];
-	}
-	pf->format.precision = UINT_MAX;
-	conv_s_str(pf, ptr);
+	ptr = ft_itoa_base_pf(num, BASE_OCT, str, &(pf->format));
+	if (!(sign = 0) && num && pf->format.flags & HASH)
+		sign = 'X';
+	else if (pf->format.flags & SPACE)
+		sign = ' ';
+	conv_num(pf, ptr, sign);
 }
