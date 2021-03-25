@@ -26,6 +26,7 @@ void			conv_p(t_printf *pf, va_list args)
 	pf->format.flags &= ~PLUS;
 	ptr = va_arg(args, void *);
 	len = BASE_16_LEN - 2;
+	ft_bzero(str, BASE_16_LEN);
 	pf->format.infos = &len;
 	str_final = ft_itoa_base_pf((uintmax_t)ptr, BASE_HEX_M, &(str[2]), &(pf->format));
 	str_final = ft_memcpy(&(str_final[-2]), "0x", 2);

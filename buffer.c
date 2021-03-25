@@ -30,6 +30,7 @@ int		send_to_buffer(t_printf *pf, const char *str, size_t len)
 	int		tmp;
 
 	ret = 0;
+	tmp = 0;
 	while (len)
 	{
 		to_write = (len > BUFFER_SIZE - pf->buffer.index ? BUFFER_SIZE : len);
