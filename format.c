@@ -91,22 +91,22 @@ int	parse_prec(t_format *format, const char *s, va_list args)
 int	parse_len(t_format *format, const char *str_format)
 {
 	size_t	len;
-	int		index;
 
-	index = 0;
-	if (str_format && str_format[index] == 'h' && str_format[index + 1] == 'h')
+	if (str_format && str_format[0] == 'h' && str_format[1] == 'h')
 	{
 		format->len |= CHAR_HH;
-		index += 2;
+		return (2);
 	}
-	if (str_format && str_format[index] == 'l' && str_format[index + 1] == 'l')
+	if (str_format && str_format[0] == 'l' && str_format[1] == 'l')
 	{
 		format->len |= LONGLONG_LL;
-		index += 2;
+		return (2);
 	}
-	if ((len = (size_t)ft_strchr(LEN, str_format[index])))
+	if ((len = (size_t)ft_strchr(LEN, str_format[0])))
 		format->len |= 1 << (len - (size_t)LEN);
-	return (index);
+	else
+		return (0);
+	return (1);
 }
 
 int	parse_type(t_format *format, const char *str_format)
