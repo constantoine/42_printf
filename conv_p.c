@@ -17,25 +17,19 @@
 
 void			conv_p(t_printf *pf, va_list args)
 {
-	unsigned int	num;
-	char			str[BASE_16_LEN];
-	char			*str_final;
-	uint8_t			len;
-	char			sign;
+	void		*ptr;
+	char		str[BASE_16_LEN];
+	char		*str_final;
+	uint8_t		len;
 
-	if (pf->format.flags & PLUS)
-		pf->format.flags &= ~PLUS;
-	num = va_arg(args, unsigned int);
-	len = BASE_16_LEN;
-    printf("%d\n", num);
+	pf->format.flags &= ~PRECISION;
+	pf->format.flags &= ~PLUS;
+	ptr = va_arg(args, void *);
+	len = BASE_16_LEN - 2;
 	pf->format.infos = &len;
-	str_final = ft_itoa_base_pf(num, BASE_HEX_M, str, &(pf->format));
-	//printf("atoi: %d->%d->%s\n", ft_abs(num), num, str_final);
-	if (pf->format.flags & PLUS)
-		sign = '+';
-	else if (pf->format.flags & SPACE)
-		sign = ' ';
-	if (!num && pf->format.flags & PRECISION && !pf->format.precision)
-		str_final[0] = 0;
-	conv_num(pf, str_final, sign);
+	str_final = ft_itoa_base_pf((uintmax_t)ptr, BASE_HEX_M, &(str[2]), &(pf->format));
+	str_final = ft_memcpy(&(str_final[-2]), "0x", 2);
+	if (!ptr)
+		str_final = NIL_STR;
+	conv_s_str(pf, str_final);
 }
