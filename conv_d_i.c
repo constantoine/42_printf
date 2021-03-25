@@ -15,7 +15,7 @@
 #include "conv.h"
 #include <limits.h>
 
-uintmax_t	ft_abs(int num)
+uintmax_t	ft_abs(intmax_t num)
 {
 	if (num < 0)
 		return (num * -1);
@@ -41,6 +41,8 @@ void			conv_num(t_printf *pf, char *str, char sign)
 	len_sign = len + zero_pad;
 	if (sign)
 		len_sign++;
+	if (sign == 'x' || sign == 'X')
+		len_sign++;
 	//printf("len_sign: %d\n", len_sign);
 	if (!(padding = 0) && pf->format.width > len_sign)
 		padding = pf->format.width - len_sign;
@@ -51,6 +53,8 @@ void			conv_num(t_printf *pf, char *str, char sign)
 	//printf("prec: %d; width: %d; padding: %d; zero_pad: %d\n", pf->format.precision, pf->format.width, padding, zero_pad);
 	while (!(pf->format.flags & MINUS)  && padding--)
 		pf->len += send_to_buffer(pf, &pad, 1);
+	if (sign == 'x' || sign == 'X')
+		pf->len += send_to_buffer(pf, "0", 1);
 	if (sign)
 		pf->len += send_to_buffer(pf, &sign, 1);
 	while (zero_pad--)
@@ -70,6 +74,7 @@ void			conv_d(t_printf *pf, va_list args)
 
 	num = va_arg(args, int);
 	len = BASE_10_LEN;
+	ft_bzero(str, BASE_10_LEN);
 	pf->format.infos = &len;
 	str_final = ft_itoa_noalloc(ft_abs(num), str, BASE_10_LEN);
 	//printf("atoi: %d->%d->%s\n", ft_abs(num), num, str_final);
