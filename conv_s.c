@@ -40,6 +40,9 @@ void	conv_s(t_printf *pf, va_list args)
 	char	*str;
 
 	str = va_arg(args, char *);
+	//printf("prec: %d, width: %d", pf->format.precision, pf->format.width);
+	if (!str && pf->format.precision && pf->format.precision < ft_strlen(NULL_STR))
+		pf->format.precision = 0;
 	str = str ? str : NULL_STR;
 	conv_s_str(pf, str);
 }
