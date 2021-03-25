@@ -39,9 +39,9 @@ static int	check_base(char *str)
 	return (index);
 }
 
-static char	*ft_putnbr_base2(unsigned int nbr, int index, char *num, char *base)
+static char	*ft_putnbr_base2(uintmax_t nbr, int index, char *num, char *base)
 {
-	unsigned int	nbcpy;
+	uintmax_t		nbcpy;
 	int				base_len;
 
 	base_len = check_base(base);
@@ -56,10 +56,10 @@ static char	*ft_putnbr_base2(unsigned int nbr, int index, char *num, char *base)
 	return (&num[index]);
 }
 
-char	*ft_itoa_noalloc(unsigned int nb, char *num, size_t size)
+char	*ft_itoa_noalloc(uintmax_t nb, char *num, size_t size)
 {
-	int				index;
-	unsigned int	nbcpy;
+	int			index;
+	uintmax_t	nbcpy;
 
 	nbcpy = nb;
 	index = size - 2;
@@ -73,7 +73,7 @@ char	*ft_itoa_noalloc(unsigned int nb, char *num, size_t size)
 }
 
 char		*ft_itoa_base_pf
-	(unsigned int nbr, char *base, char *dst, t_format *format)
+	(uintmax_t nbr, char *base, char *dst, t_format *format)
 {
 	int		base_len;
 	uint8_t	len;

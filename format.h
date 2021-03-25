@@ -36,6 +36,7 @@
 # define TYPE	"diufFeEgGxXoscpaAn%%"
 
 # define NULL_STR "(null)"
+# define NIL_STR "(nil)"
 
 enum	e_flag
 {

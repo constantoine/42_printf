@@ -15,7 +15,7 @@
 #include "conv.h"
 #include <limits.h>
 
-unsigned int	ft_abs(int num)
+uintmax_t	ft_abs(int num)
 {
 	if (num < 0)
 		return (num * -1);
