@@ -56,6 +56,22 @@ static char	*ft_putnbr_base2(unsigned int nbr, int index, char *num, char *base)
 	return (&num[index]);
 }
 
+char	*ft_itoa_noalloc(unsigned int nb, char *num, size_t size)
+{
+	int				index;
+	unsigned int	nbcpy;
+
+	nbcpy = nb;
+	index = size - 2;
+	num[size - 1] = 0;
+	num[index] = '0';
+	while (nb > 0 && (num[index--] = nb % 10 + '0'))
+		nb /= 10;
+	if (nbcpy != 0)
+		index++;
+	return (&num[index]);
+}
+
 char		*ft_itoa_base_pf
 	(unsigned int nbr, char *base, char *dst, t_format *format)
 {
@@ -66,10 +82,6 @@ char		*ft_itoa_base_pf
 	base_len = check_base(base);
 	if (base_len == 0)
 		return (NULL);
-	if (format->precision == 0 && nbr == 0)
-		dst[0] = 0;
-	if (format->precision == 0 && nbr == 0)
-		return (dst);
 	dst[len - 1] = 0;
 	dst[len - 2] = base[0];
 	return (ft_putnbr_base2(nbr, len - 2, dst, base));

@@ -31,6 +31,7 @@ static void	conv(t_printf *pf, va_list args)
 		conv[11] = conv_o;
 		conv[12] = conv_s;
 		conv[13] = conv_c;
+		conv[14] = conv_p;
 		conv[18] = conv_percent;
 	}
 	while (++flag <= 19)

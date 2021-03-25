@@ -15,22 +15,26 @@
 #include "conv.h"
 #include <limits.h>
 
-void	conv_u(t_printf *pf, va_list args)
+void			conv_u(t_printf *pf, va_list args)
 {
-	char	str[BASE_8_LEN];
-	char	*ptr;
-	int		width;
-	int		prec;
-	uint8_t	len;
+	unsigned int	num;
+	char			str[BASE_10_LEN];
+	char			*str_final;
+	uint8_t			len;
+	char			sign;
 
+	if (pf->format.flags & PLUS)
+		pf->format.flags &= ~PLUS;
+	num = va_arg(args, unsigned int);
 	len = BASE_10_LEN;
 	pf->format.infos = &len;
-	prec = pf->format.precision;
-	width = pf->format.width;
-	pf->format.width = (width > prec ? width : prec);
-	pf->format.precision = pf->format.precision ? UINT_MAX : 0;
-	ptr = ft_itoa_base_pf(va_arg(args, unsigned int),
-		BASE_DEC, str, &(pf->format));
-	pf->format.precision = UINT_MAX;
-	conv_s_str(pf, ptr);
+	str_final = ft_itoa_noalloc(ft_abs(num), str, BASE_10_LEN);
+	//printf("atoi: %d->%d->%s\n", ft_abs(num), num, str_final);
+	if (pf->format.flags & PLUS)
+		sign = '+';
+	else if (pf->format.flags & SPACE)
+		sign = ' ';
+	if (!num && pf->format.flags & PRECISION && !pf->format.precision)
+		str_final[0] = 0;
+	conv_num(pf, str_final, sign);
 }

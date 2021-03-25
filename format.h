@@ -23,7 +23,7 @@
 */
 # define BASE_8_LEN 27
 # define BASE_10_LEN 25
-# define BASE_16_LEN 21
+# define BASE_16_LEN 23
 
 # define FLAGS	"-+ 0#"
 
@@ -45,9 +45,8 @@ enum	e_flag
 	ZERO = (1u << 3),
 	HASH = (1u << 4),
 	PERCENT = (1u << 5),
+	PRECISION = (1u << 6),
 	ERROR = (1u << 7),
-	PRECISION = (1u << 8),
-	WIDTH = (1u << 9),
 };
 
 enum	e_len

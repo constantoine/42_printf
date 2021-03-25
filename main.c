@@ -12,12 +12,87 @@ int	main(void)
 {
 	int		standard;
 	int		ret;
+	char	*ptr;
 
-	test("%04i.\n", -12);
-	test("% .4i.\n", 12);
-	test("%i.\n", -12);
-	test("%0.i.\n", -12);
+	ptr = ft_strdup("bite");
+	test("%p\n", ptr);
+	return 0;
 
+	test("%+ 4.0x\n", 0);
+	test("%0+4.0x\n", 0);
+	test("%+ .4x\n", 5165);
+	test("%0+4x\n", 5165);
+	test("%+x\n", 5165);
+	test("%+0.x\n", 5165);
+	test("%+-04x\n", 5165);
+	test("%+- .4x\n", 5165);
+	test("%+-x.\n", 5165);
+	test("%+-0.x\n", 5165);
+	test("%+04x.8\n", 5165);
+	test("%+ .4x\n", 5165);
+	test("%+x.8\n", 5165);
+	test("%+0.8x\n", 5165);
+	test("%+-04x\n", 5165);
+	test("%+- .4x\n", 5165);
+	test("%+-x\n", 5165);
+	test("%+-0.8x\n", 5165);
+
+	test("%+ 4.0u\n", 0);
+	test("%0+4.0u\n", 0);
+	test("%+ .4u\n", 15);
+	test("%0+4u\n", 15);
+	test("%+u\n", 15);
+	test("%+0.u\n", 15);
+	test("%+-04u\n", 15);
+	test("%+- .4u\n", 15);
+	test("%+-u.\n", 15);
+	test("%+-0.u\n", 15);
+	test("%+04u.8\n", 15);
+	test("%+ .4u\n", 15);
+	test("%+u.8\n", 15);
+	test("%+0.8u\n", 15);
+	test("%+-04u\n", 15);
+	test("%+- .4u\n", 15);
+	test("%+-u\n", 15);
+	test("%+-0.8u\n", 15);
+
+	test("%+ 4.0i\n", 0);
+	test("%0+4.0i\n", 0);
+	test("%+ .4i\n", 12);
+	test("%0+4i\n", -12);
+	test("%+i\n", -12);
+	test("%+0.i\n", -12);
+	test("%+-04i\n", -12);
+	test("%+- .4i\n", 12);
+	test("%+-i.\n", -12);
+	test("%+-0.i\n", -12);
+	test("%+04i.8\n", -12);
+	test("%+ .4i\n", 12);
+	test("%+i.8\n", -12);
+	test("%+0.8i\n", -12);
+	test("%+-04i\n", -12);
+	test("%+- .4i\n", 12);
+	test("%+-i\n", -12);
+	test("%+-0.8i\n", -12);
+	
+	test("%+ 4.0i\n", 0);
+	test("%0+4.0i\n", 0);
+	test("%+ .4i\n", 12);
+	test("%0+4i\n", -12);
+	test("%+i\n", -12);
+	test("%+0.i\n", -12);
+	test("%+04i\n", -12);
+	test("%+ .4i\n", 12);
+	test("%+i.\n", -12);
+	test("%+0.i\n", -12);
+	test("%+04i.8\n", -12);
+	test("%+ .4i\n", 12);
+	test("% +i.8\n", -12);
+	test("% +0.8i\n", -12);
+	test("% +04i\n", -12);
+	test("%+ .4i\n", 12);
+	test("%+i\n", -12);
+	test("%+0.8i\n", -12);
 	//c
 	test("%c\n", 'b');
 	test("%c\n", '\0');
@@ -53,8 +128,6 @@ int	main(void)
 	test("st10 %*s\n", 10, "dsa");
 	test("st118 %*s\n", 100, "hello");
 	test("st119 %*s\n", 1000, "hello");
-	test("st120 %*s\n", 10000, "hello");
-	test("st121 %*s\n", 100000, "hello");
 	test("neg1 %*s\n", -9, "coucou");
 	test("neg2 %*.*s\n", -9, 4, "coucou");
 	test("neg3 %*s\n", -9, NULL);
@@ -62,12 +135,11 @@ int	main(void)
 	test("neg5 %*s\n", -100, "coucou");
 	test("neg6 %*s\n", -156, "coucou");
 	test("neg7 %*.*s\n", -1586, 15, "coucou");
-	test("neg8 %*.*s\n", -1586, 15, "coucou");
-	test("neg9 %*.*s\n", 15856, 155, "coucou");
-	test("neg10 %*.*s\n", -15586, 15, "coucou");
-	test("neg11 %*.*s\n", -15586, 15, "coucou");
+	test("neg9 %*.*s\n", -1856, 155, "coucou");
+	test("neg9 %*.*s\n", 1856, 155, "coucou");
 	
 	// x-X
+	return 0;
 	test("ultimate4 %1.50x\n", 5000);
 	test("ultimate4Maj %1.0X\n", 100);
 	

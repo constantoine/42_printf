@@ -88,9 +88,5 @@ char		*ft_itoa_base_pf_signed
 		return (NULL);
 	dst[len] = 0;
 	dst[len - 1] = base[0];
-	if (format->precision == 0 && nbr == 0)
-		dst[0] = 0;
-	if (format->precision == 0 && nbr == 0)
-		return (dst);
 	return (ft_putnbr_base(nbr, len - 1, dst, base));
 }

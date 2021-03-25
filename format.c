@@ -40,8 +40,7 @@ int	parse_width(t_format *format, const char *str_format, va_list args)
  
 	if ((index = 0) == 0 && str_format[0] == '*')
 	{
-		format->flags |= WIDTH;
-		if ((tmp = va_arg(args, int)) < 0 && index++)
+		if (++index && (tmp = va_arg(args, int)) < 0)
 		{
 			if (tmp == INT_MIN)
 				format->width = INT_MAX;
@@ -57,8 +56,6 @@ int	parse_width(t_format *format, const char *str_format, va_list args)
 		format->width = ft_atoi(str_format);
 		while (ft_strchr(BASE_DEC, str_format[index]) && str_format[index])
 			index++;
-		if (index != 0)
-			format->flags |= WIDTH;
 	}
 	return (index);
 }
@@ -74,10 +71,8 @@ int	parse_prec(t_format *format, const char *s, va_list args)
 		if ((format->precision = 0) == 0 && s[++index] == '*')
 		{
 			tmp = va_arg(args, int);
-			if ((tmp = va_arg(args, int)) >= 0 && index++)
+			if (index++ && (format->flags |= PRECISION) && tmp > 0)
 				format->precision = (unsigned int)tmp;
-			if ((tmp = va_arg(args, int)) >= 0)
-				format->flags |= PRECISION;
 		}
 		else
 		{

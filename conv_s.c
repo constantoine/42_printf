@@ -16,7 +16,7 @@
 void	conv_s_str(t_printf *pf, char *str) {
 	size_t	len;
 	size_t	to_print;
-	size_t	padding;
+	int		padding;
 	char	pad;
 
 	pad = pf->format.flags & ZERO ? '0' : ' ';
@@ -25,13 +25,13 @@ void	conv_s_str(t_printf *pf, char *str) {
 	padding = 0;
 	if (pf->format.flags & PRECISION && pf->format.precision < len)
 		to_print = pf->format.precision;
-	if (pf->format.flags & WIDTH && pf->format.width > to_print)
+	if (pf->format.width > to_print)
 		padding = pf->format.width - to_print;
 	if (!(pf->format.flags & MINUS))
 		while (padding--)
 			pf->len += send_to_buffer(pf, &pad, 1);
 	pf->len += send_to_buffer(pf, str, to_print);
-	while (padding--)
+	while (padding-- > 0)
 		pf->len += send_to_buffer(pf, &pad, 1);	
 }
 
