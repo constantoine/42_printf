@@ -17,8 +17,20 @@
 
 void	conv_n(t_printf *pf, va_list args)
 {
-    int *ptr;
+    int ret;
 
-    ptr = va_arg(args, int*);
-    *ptr = pf->len;
+    ret = buffer_flush(pf);
+    if (ret == -1)
+        pf->format.flags |= ERROR;
+    pf->len += ret;
+    if (pf->format.len & SHORT_H)
+        *va_arg(args, short*) = (short)(pf->len);
+    else if (pf->format.len & CHAR_HH)
+        *va_arg(args, char*) = (char)(pf->len);
+    else if (pf->format.len & LONG_L)
+        *va_arg(args, long int*) = (long int)(pf->len);
+    else if (pf->format.len & LONGLONG_LL)
+        *va_arg(args, long long int*) = (long long int)(pf->len);
+    else
+        *va_arg(args, int*) = pf->len;
 }
