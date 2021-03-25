@@ -1,5 +1,6 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 #define test(format, ...) {\
 	standard = printf(format, __VA_ARGS__);\
@@ -13,9 +14,54 @@ int	main(void)
 	int		standard;
 	int		ret;
 	char	*ptr;
+	int		a = 12;
+	int		b = 18;
+	char	c = 'a';
+	int		d = 2147483647;
+	int		e = -2147483648;
+	int		f = 42;
+	int		g = 25;
+	int		h = 4200;
+	int		i = 8;
+	int		j = -12;
+	int		k = 123456789;
+	int		l = 0;
+	int		m = -12345678;
+	char	*n = "abcdefghijklmnop";
+	char	*o = "-a";
+	char	*p = "-12";
+	char	*q = "0";
+	char	*r = "%%";
+	char	*s = "-2147483648";
+	char	*t = "0x12345678";
+	char	*u = "-0";
 
+	test("|%-2.6s|\n", NULL);
+	test("%.4s\n", NULL);
+	test("%-2s, %.s, %-4s, %-2.4s, %-8.12s, %3s, %8s, %---2s, %.*s, %.0s, %.1s, %.2s, %.4s, %.8s\n", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -2, NULL, NULL, NULL, NULL, NULL, NULL);
+	return 0;
+	test("%.*d", -4, 15);
+	return 0;
+	test("%.*i, %.*d, %.*d, %.*d, %.*d, %.*d, %.*d, %.*d\n", a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
+	return 0;
+	test("%%", "");
+	return 0;
+	test(" --0*%0*.0d*0 0*%0*.10d*0-- \n", -21, INT_MAX, 21, INT_MIN);
+	return 0;
 	ptr = ft_strdup("bite");
 	test("%p\n", ptr);
+	test("%15p\n", ptr);
+	test("%3p\n", ptr);
+	test("%-p\n", ptr);
+	test("%-15p\n", ptr);
+	test("%-3p\n", ptr);
+	test("%p\n", NULL);
+	test("%15p\n", NULL);
+	test("%3p\n", NULL);
+	test("%-p\n", NULL);
+	test("%-15p\n", NULL);
+	test("%-3p\n", NULL);
+	free(ptr);
 	return 0;
 
 	test("%+ 4.0x\n", 0);
