@@ -35,7 +35,19 @@ int	main(void)
 	char	*s = "-2147483648";
 	char	*t = "0x12345678";
 	char	*u = "-0";
+	int		tes;
 
+	ft_printf("%s%n\n", "ok", &tes);
+	printf("%d\n", tes);
+	printf("%s%n\n", "ok", &tes);
+	printf("%d\n", tes);
+
+	return 0;
+	ft_printf("ok%n\n", &tes);
+	printf("%d\n", tes);
+	printf("ok%n\n", &tes);
+	printf("%d\n", tes);
+	return 0;
 	test("|%-2.6s|\n", NULL);
 	test("%.4s\n", NULL);
 	test("%-2s, %.s, %-4s, %-2.4s, %-8.12s, %3s, %8s, %---2s, %.*s, %.0s, %.1s, %.2s, %.4s, %.8s\n", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -2, NULL, NULL, NULL, NULL, NULL, NULL);
