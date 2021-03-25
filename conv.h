@@ -25,7 +25,7 @@ void	conv_c(t_printf *pf, va_list args);
 void	conv_p(t_printf *pf, va_list args);
 void	conv_percent(t_printf *pf, va_list args);
 
-uintmax_t		ft_abs(int num);
+uintmax_t		ft_abs(intmax_t num);
 void			conv_num(t_printf *pf, char *str, char sign);
 void			conv_s_str(t_printf *pf, char *str);
 char			*ft_itoa_base_pf
