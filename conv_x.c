@@ -30,7 +30,6 @@ void			conv_x(t_printf *pf, va_list args)
 	ft_bzero(str, BASE_16_LEN);
 	pf->format.infos = &len;
 	str_final = ft_itoa_base_pf(num, BASE_HEX_M, str, &(pf->format));
-	//printf("atoi: %d->%d->%s\n", ft_abs(num), num, str_final);
 	if (!(sign = 0) && num && pf->format.flags & HASH)
 		sign = 'x';
 	else if (pf->format.flags & SPACE)
@@ -54,7 +53,6 @@ void			conv_x_capital(t_printf *pf, va_list args)
 	ft_bzero(str, BASE_16_LEN);
 	pf->format.infos = &len;
 	str_final = ft_itoa_base_pf(num, BASE_HEX_C, str, &(pf->format));
-	//printf("atoi: %d->%d->%s\n", ft_abs(num), num, str_final);
 	if (!(sign = 0) && num && pf->format.flags & HASH)
 		sign = 'X';
 	else if (pf->format.flags & SPACE)

@@ -13,21 +13,21 @@
 #ifndef CONV_H
 # define CONV_H
 
-void	conv_d(t_printf *pf, va_list args);
-void	conv_i(t_printf *pf, va_list args);
-void	conv_u(t_printf *pf, va_list args);
-void	conv_x(t_printf *pf, va_list args);
-void	conv_x_capital(t_printf *pf, va_list args);
-void	conv_n(t_printf *pf, va_list args);
-void	conv_o(t_printf *pf, va_list args);
-void	conv_s(t_printf *pf, va_list args);
-void	conv_c(t_printf *pf, va_list args);
-void	conv_p(t_printf *pf, va_list args);
-void	conv_percent(t_printf *pf, va_list args);
+void			conv_d(t_printf *pf, va_list args);
+void			conv_i(t_printf *pf, va_list args);
+void			conv_u(t_printf *pf, va_list args);
+void			conv_x(t_printf *pf, va_list args);
+void			conv_x_capital(t_printf *pf, va_list args);
+void			conv_n(t_printf *pf, va_list args);
+void			conv_o(t_printf *pf, va_list args);
+void			conv_s(t_printf *pf, va_list args);
+void			conv_c(t_printf *pf, va_list args);
+void			conv_p(t_printf *pf, va_list args);
+void			conv_percent(t_printf *pf, va_list args);
 
 uintmax_t		ft_abs(intmax_t num);
 void			conv_s_str(t_printf *pf, char *str);
-intmax_t    	len_signed(t_printf *pf, va_list args);
+intmax_t		len_signed(t_printf *pf, va_list args);
 uintmax_t		len_unsigned(t_printf *pf, va_list args);
 void			conv_num(t_printf *pf, char *str, char sign);
 char			*ft_itoa_base_pf

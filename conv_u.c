@@ -29,7 +29,6 @@ void			conv_u(t_printf *pf, va_list args)
 	pf->format.infos = &len;
 	ft_bzero(str, BASE_10_LEN);
 	str_final = ft_itoa_noalloc(ft_abs(num), str, BASE_10_LEN);
-	//printf("atoi: %d->%d->%s\n", ft_abs(num), num, str_final);
 	if (!(sign = 0) && pf->format.flags & PLUS)
 		sign = '+';
 	else if (pf->format.flags & SPACE)

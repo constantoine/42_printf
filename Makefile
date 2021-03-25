@@ -14,10 +14,8 @@ HEAD=ft_printf.h
 SRC := itoa_base.c ft_printf.c format.c conv_x.c conv_u.c
 SRC += conv_percent.c conv_c.c buffer.c conv_s.c conv_d_i.c
 SRC += format.c parse_format.c conv_p.c len_signed.c
-SRC += len_unsigned.c
-SRC_BONUS := conv_n.c conv_o.c
+SRC += len_unsigned.c conv_n.c conv_o.c
 OBJ_LIB = $(SRC:.c=.o)
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror -I42_libft
 NAME=libftprintf.a
@@ -25,8 +23,7 @@ LIBFT = 42_libft
 
 all: $(NAME)
 
-bonus:
-	@make all OBJ_LIB="$(OBJ_LIB) $(OBJ_BONUS)"
+bonus: all
 
 $(NAME): $(HEAD) $(OBJ_LIB)
 	make -C $(LIBFT)

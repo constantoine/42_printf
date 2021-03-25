@@ -13,51 +13,51 @@
 #include "format.h"
 #include "ft_printf.h"
 
-static  intmax_t    len_h_signed(va_list args)
+static	intmax_t	len_h_signed(va_list args)
 {
-    short int  num;
+	short	int	num;
 
-    num = (short int)va_arg(args, uintptr_t);
-	return((intmax_t)num);
+	num = (short int)va_arg(args, uintptr_t);
+	return ((intmax_t)num);
 }
 
-static  intmax_t    len_hh_signed(va_list args)
+static	intmax_t	len_hh_signed(va_list args)
 {
-    char   num;
+	char	num;
 
-    num = (char)va_arg(args, uintptr_t);
-	return((intmax_t)num);
+	num = (char)va_arg(args, uintptr_t);
+	return ((intmax_t)num);
 }
 
-static  intmax_t    len_l_signed(va_list args)
+static	intmax_t	len_l_signed(va_list args)
 {
-    long int  num;
+	long	int	num;
 
-    num = (long int)va_arg(args, uintptr_t);
-	return((intmax_t)num);
+	num = (long int)va_arg(args, uintptr_t);
+	return ((intmax_t)num);
 }
 
-static  intmax_t    len_ll_signed(va_list args)
+static	intmax_t	len_ll_signed(va_list args)
 {
-    long long int  num;
+	long	long	int	num;
 
-    num = (long long int)va_arg(args, uintptr_t);
-	return((intmax_t)num);
+	num = (long long int)va_arg(args, uintptr_t);
+	return ((intmax_t)num);
 }
 
-intmax_t    len_signed(t_printf *pf, va_list args)
+intmax_t			len_signed(t_printf *pf, va_list args)
 {
-    int num;
+	int	num;
 
-    num = 0;
-    if (pf->format.len & SHORT_H)
-        return (len_h_signed(args));
-    if (pf->format.len & CHAR_HH)
-        return (len_hh_signed(args));
-    if (pf->format.len & LONG_L)
-        return (len_l_signed(args));
-    if (pf->format.len & LONGLONG_LL)
-        return (len_ll_signed(args));
-    num = va_arg(args, int);
-    return (num);
+	num = 0;
+	if (pf->format.len & SHORT_H)
+		return (len_h_signed(args));
+	if (pf->format.len & CHAR_HH)
+		return (len_hh_signed(args));
+	if (pf->format.len & LONG_L)
+		return (len_l_signed(args));
+	if (pf->format.len & LONGLONG_LL)
+		return (len_ll_signed(args));
+	num = va_arg(args, int);
+	return (num);
 }

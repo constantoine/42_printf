@@ -15,11 +15,34 @@
 #include "conv.h"
 #include <limits.h>
 
-uintmax_t	ft_abs(intmax_t num)
+uintmax_t		ft_abs(intmax_t num)
 {
 	if (num < 0)
 		return (num * -1);
 	return (num);
+}
+
+void			conv_num_print(t_printf *pf, char sign, char pad, int padding)
+{
+	char	*str;
+	int		zero_pad;
+
+	str = ((char **)pf->format.infos)[0];
+	zero_pad = *(((int **)pf->format.infos)[1]);
+	if (!(pf->format.flags & MINUS) &&
+		!(pf->format.flags & PRECISION) && pad == '0')
+		padding = 0;
+	while (!(pf->format.flags & MINUS) && padding--)
+		pf->len += send_to_buffer(pf, &pad, 1);
+	if (sign == 'x' || sign == 'X')
+		pf->len += send_to_buffer(pf, "0", 1);
+	if (sign)
+		pf->len += send_to_buffer(pf, &sign, 1);
+	while (zero_pad--)
+		pf->len += send_to_buffer(pf, "0", 1);
+	pf->len += send_to_buffer(pf, str, ft_strlen(str));
+	while (padding-- > 0)
+		pf->len += send_to_buffer(pf, &pad, 1);
 }
 
 void			conv_num(t_printf *pf, char *str, char sign)
@@ -30,12 +53,11 @@ void			conv_num(t_printf *pf, char *str, char sign)
 	int		zero_pad;
 	char	pad;
 
+	pf->format.infos = (void*[2]){str, &zero_pad};
 	if (pf->format.flags & PRECISION && pf->format.flags & ZERO)
 		pf->format.flags &= ~ZERO;
 	pad = pf->format.flags & ZERO ? '0' : ' ';
 	len = ft_strlen(str);
-	//printf(str);
-	//printf("len: %d\n", len);
 	if (!(zero_pad = 0) && pf->format.precision > len)
 		zero_pad = pf->format.precision - len;
 	len_sign = len + zero_pad;
@@ -43,25 +65,12 @@ void			conv_num(t_printf *pf, char *str, char sign)
 		len_sign++;
 	if (sign == 'x' || sign == 'X')
 		len_sign++;
-	//printf("len_sign: %d\n", len_sign);
 	if (!(padding = 0) && pf->format.width > len_sign)
 		padding = pf->format.width - len_sign;
-	if (!(pf->format.flags & MINUS) && !(pf->format.flags & PRECISION) && pad == '0')
+	if (!(pf->format.flags & MINUS) &&
+		!(pf->format.flags & PRECISION) && pad == '0')
 		zero_pad += padding;
-	if (!(pf->format.flags & MINUS) && !(pf->format.flags & PRECISION) && pad == '0')
-		padding = 0;
-	//printf("prec: %d; width: %d; padding: %d; zero_pad: %d\n", pf->format.precision, pf->format.width, padding, zero_pad);
-	while (!(pf->format.flags & MINUS)  && padding--)
-		pf->len += send_to_buffer(pf, &pad, 1);
-	if (sign == 'x' || sign == 'X')
-		pf->len += send_to_buffer(pf, "0", 1);
-	if (sign)
-		pf->len += send_to_buffer(pf, &sign, 1);
-	while (zero_pad--)
-		pf->len += send_to_buffer(pf, "0", 1);
-	pf->len += send_to_buffer(pf, str, len);
-	while (padding-- > 0)
-		pf->len += send_to_buffer(pf, &pad, 1);
+	conv_num_print(pf, sign, pad, padding);
 }
 
 void			conv_d(t_printf *pf, va_list args)
@@ -77,7 +86,6 @@ void			conv_d(t_printf *pf, va_list args)
 	ft_bzero(str, BASE_10_LEN);
 	pf->format.infos = &len;
 	str_final = ft_itoa_noalloc(ft_abs(num), str, BASE_10_LEN);
-	//printf("atoi: %d->%d->%s\n", ft_abs(num), num, str_final);
 	if (!(sign = 0) && num < 0)
 		sign = '-';
 	else if (pf->format.flags & PLUS)

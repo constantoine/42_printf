@@ -56,7 +56,7 @@ static char	*ft_putnbr_base2(uintmax_t nbr, int index, char *num, char *base)
 	return (&num[index]);
 }
 
-char	*ft_itoa_noalloc(uintmax_t nb, char *num, size_t size)
+char		*ft_itoa_noalloc(uintmax_t nb, char *num, size_t size)
 {
 	int			index;
 	uintmax_t	nbcpy;

@@ -33,7 +33,7 @@ void	conv_s_str(t_printf *pf, char *str)
 			pf->len += send_to_buffer(pf, &pad, 1);
 	pf->len += send_to_buffer(pf, str, to_print);
 	while (padding-- > 0)
-		pf->len += send_to_buffer(pf, &pad, 1);	
+		pf->len += send_to_buffer(pf, &pad, 1);
 }
 
 void	conv_s(t_printf *pf, va_list args)
@@ -41,8 +41,8 @@ void	conv_s(t_printf *pf, va_list args)
 	char	*str;
 
 	str = va_arg(args, char *);
-	//printf("prec: %d, width: %d", pf->format.precision, pf->format.width);
-	if (!str && pf->format.precision && pf->format.precision < ft_strlen(NULL_STR))
+	if (!str && pf->format.precision &&
+		pf->format.precision < ft_strlen(NULL_STR))
 		pf->format.precision = 0;
 	str = str ? str : NULL_STR;
 	conv_s_str(pf, str);
