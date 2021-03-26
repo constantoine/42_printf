@@ -27,7 +27,7 @@ int		buffer_flush_string_alloc(t_printf *pf)
 {
 	int	ret;
 
-	ret = pf->buffer.index + 1;
+	ret = pf->buffer.index;
 	pf->buffer.index = 0;
 	if (!(pf->str = ft_strjoin(pf->str, pf->buffer.buffer)))
 		return (-1);
@@ -38,7 +38,7 @@ int		buffer_flush_string_noalloc(t_printf *pf)
 {
 	int	ret;
 
-	ret = pf->buffer.index + 1;
+	ret = pf->buffer.index;
 	ft_memcpy(&((pf->str)[pf->len]), pf->buffer.buffer, ret);
 	pf->buffer.index = 0;
 	return (ret);
@@ -48,7 +48,7 @@ int		buffer_flush_string_noalloc_limit(t_printf *pf)
 {
 	int	ret;
 
-	ret = pf->buffer.index + 1;
+	ret = pf->buffer.index;
 	pf->buffer.index = 0;
 	if (pf->len == pf->buffer.fd)
 		return (ret);
@@ -59,7 +59,10 @@ int		buffer_flush_string_noalloc_limit(t_printf *pf)
 		ft_memcpy(&((pf->str)[pf->buffer.fd - 1]), "", 1);
 	}
 	else
+	{
 		ft_memcpy(&((pf->str)[pf->len]), pf->buffer.buffer, ret);
+		ft_memcpy(&((pf->str)[pf->len + ret]), "", 1);
+	}
 	return (ret);
 }
 
