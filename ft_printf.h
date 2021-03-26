@@ -53,6 +53,8 @@ int				ft_vdprintf
 	(int fd, const char *str, va_list args);
 int				ft_sprintf
 	(char *dst, const char *str, ...);
+int				ft_ssprintf
+	(char **dst, const char *str, ...);
 int				ft_snprintf
 	(char *dst, size_t limit, const char *str, ...);
 int				ft_vsprintf

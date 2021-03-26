@@ -15,6 +15,35 @@
 #include "parse_format.h"
 #include <stdio.h>
 
+int			ft_ssprintf(char **dst, const char *str, ...)
+{
+	t_printf	pf;
+	va_list		args;
+	int			ret;
+	char		*index;
+
+	ft_bzero(&pf, sizeof(t_printf));
+	pf.flush = buffer_flush_string_alloc;
+	va_start(args, str);
+	while (*str)
+	{
+		index = ft_strchr(str, '%');
+		if (!index)
+			send_to_buffer(&pf, str, ft_strlen(str));
+		if (!index)
+			break ;
+		send_to_buffer(&pf, str, index - str);
+		str += index - str;
+		str += parse_format(&(pf.format), str, args);
+		conv(&pf, args);
+	}
+	if ((ret = buffer_flush(&pf)) != -1)
+		pf.len += ret;
+	va_end(args);
+	*dst = pf.str;
+	return (pf.len);
+}
+
 int			ft_sprintf(char *dst, const char *str, ...)
 {
 	t_printf	pf;
