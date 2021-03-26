@@ -23,6 +23,46 @@ int		buffer_flush(t_printf *pf)
 	return (ret);
 }
 
+int		buffer_flush_string_alloc(t_printf *pf)
+{
+	int	ret;
+
+	ret = pf->buffer.index + 1;
+	pf->buffer.index = 0;
+	if (!(pf->str = ft_strjoin(pf->str, pf->buffer.buffer)))
+		return (-1);
+	return (ret);
+}
+
+int		buffer_flush_string_noalloc(t_printf *pf)
+{
+	int	ret;
+
+	ret = pf->buffer.index + 1;
+	ft_memcpy(&((pf->str)[pf->len]), pf->buffer.buffer, ret);
+	pf->buffer.index = 0;
+	return (ret);
+}
+
+int		buffer_flush_string_noalloc_limit(t_printf *pf)
+{
+	int	ret;
+
+	ret = pf->buffer.index + 1;
+	pf->buffer.index = 0;
+	if (pf->len == pf->buffer.fd)
+		return (ret);
+	if ((pf->len + ret) > pf->buffer.fd)
+	{
+		ft_memcpy(&((pf->str)[pf->len]), pf->buffer.buffer,
+			pf->buffer.fd - pf->len - 1);
+		ft_memcpy(&((pf->str)[pf->buffer.fd - 1]), "", 1);
+	}
+	else
+		ft_memcpy(&((pf->str)[pf->len]), pf->buffer.buffer, ret);
+	return (ret);
+}
+
 int		send_to_buffer(t_printf *pf, const char *str, size_t len)
 {
 	size_t	to_write;
@@ -40,7 +80,7 @@ int		send_to_buffer(t_printf *pf, const char *str, size_t len)
 		pf->buffer.index += to_write;
 		if (pf->buffer.index == BUFFER_SIZE)
 		{
-			if ((tmp = buffer_flush(pf)) == -1)
+			if ((tmp = (pf->flush)(pf)) == -1)
 				break ;
 			ret += tmp;
 		}
