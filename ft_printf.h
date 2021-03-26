@@ -40,7 +40,7 @@ typedef struct	s_printf
 */
 
 int				buffer_flush(t_printf *pf);
-int				buffer_flush_string(t_printf *pf);
+int				buffer_flush_string_alloc(t_printf *pf);
 int				buffer_flush_string_noalloc(t_printf *pf);
 int				buffer_flush_string_noalloc_limit(t_printf *pf);
 int				send_to_buffer(t_printf *pf, const char *str, size_t len);
