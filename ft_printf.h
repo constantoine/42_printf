@@ -48,7 +48,7 @@ int				send_to_buffer(t_printf *pf, const char *str, size_t len);
 int				ft_printf
 	(const char *str, ...);
 int				ft_vprintf
-	(const char *str, va_list args)
+	(const char *str, va_list args);
 int				ft_dprintf
 	(int fd, const char *str, ...);
 int				ft_vdprintf
