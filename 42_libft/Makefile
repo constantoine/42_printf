@@ -36,7 +36,7 @@ OBJ= $(SRC:.c=.o)
 HEAD=libft.h
 OBJ_BONUS= $(SRC_BONUS:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iinclude
+CFLAGS = -Wall -Wextra -Werror
 NAME=libft.a
 
 all: $(NAME)
