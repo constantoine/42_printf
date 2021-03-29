@@ -40,7 +40,8 @@ int	parse_width(t_format *format, const char *str_format, va_list args)
 
 	if ((index = 0) == 0 && str_format[0] == '*')
 	{
-		if (++index && (tmp = va_arg(args, int)) < 0)
+		++index;
+		if ((tmp = va_arg(args, int)) < 0)
 		{
 			if (tmp == INT_MIN)
 				format->width = INT_MAX;
