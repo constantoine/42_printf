@@ -41,9 +41,6 @@ void	conv_s(t_printf *pf, va_list args)
 	char	*str;
 
 	str = va_arg(args, char *);
-	if (!str && pf->format.precision &&
-		pf->format.precision < ft_strlen(NULL_STR))
-		pf->format.precision = 0;
 	str = str ? str : NULL_STR;
 	conv_s_str(pf, str);
 }
