@@ -16,8 +16,10 @@
 # include <stddef.h>
 # include <stdarg.h>
 
-int				ft_printf(
-	const char *str, ...);
+int				ft_printf
+	(const char *str, ...);
+int				ft_vprintf
+	(const char *str, va_list args);
 int				ft_dprintf
 	(int fd, const char *str, ...);
 int				ft_vdprintf

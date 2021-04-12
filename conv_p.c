@@ -30,7 +30,5 @@ void			conv_p(t_printf *pf, va_list args)
 	pf->format.infos = &len;
 	str_final = ft_itoa_base_pf(ptr, BASE_HEX_M, &(str[2]), &(pf->format));
 	str_final = ft_memcpy(&(str_final[-2]), "0x", 2);
-	if (!ptr)
-		str_final = NIL_STR;
 	conv_s_str(pf, str_final);
 }

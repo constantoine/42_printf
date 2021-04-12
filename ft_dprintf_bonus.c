@@ -69,3 +69,28 @@ int			ft_vdprintf(int fd, const char *str, va_list args)
 		pf.len += ret;
 	return (pf.len);
 }
+
+int			ft_vprintf(const char *str, va_list args)
+{
+	t_printf	pf;
+	int			ret;
+	char		*index;
+
+	ft_bzero(&pf, sizeof(t_printf));
+	pf.flush = buffer_flush;
+	while (*str)
+	{
+		index = ft_strchr(str, '%');
+		if (!index)
+			send_to_buffer(&pf, str, ft_strlen(str));
+		if (!index)
+			break ;
+		send_to_buffer(&pf, str, index - str);
+		str += index - str;
+		str += parse_format(&(pf.format), str, args);
+		conv(&pf, args);
+	}
+	if ((ret = buffer_flush(&pf)) != -1)
+		pf.len += ret;
+	return (pf.len);
+}
