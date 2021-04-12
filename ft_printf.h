@@ -13,37 +13,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "parse_format.h"
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
-# endif
-
-typedef	struct	s_buffer
-{
-	char	buffer[BUFFER_SIZE];
-	size_t	index;
-	int		fd;
-}				t_buffer;
-
-typedef struct	s_printf
-{
-	int			len;
-	char		*str;
-	t_buffer	buffer;
-	t_format	format;
-	int			(*flush)(struct	s_printf *pf);
-}				t_printf;
-
-/*
-** Buffer related functions
-*/
-
-int				buffer_flush(t_printf *pf);
-int				buffer_flush_string_alloc(t_printf *pf);
-int				buffer_flush_string_noalloc(t_printf *pf);
-int				buffer_flush_string_noalloc_limit(t_printf *pf);
-int				send_to_buffer(t_printf *pf, const char *str, size_t len);
+# include <stddef.h>
+# include <stdarg.h>
 
 int				ft_printf(
 	const char *str, ...);
