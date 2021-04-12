@@ -19,9 +19,9 @@ SRC_BONUS := ft_sprintf_bonus.c ft_dprintf_bonus.c
 OBJ_LIB = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -I42_libft
+CFLAGS = -Wall -Wextra -Werror -Ilibft
 NAME=libftprintf.a
-LIBFT = 42_libft
+LIBFT = libft
 
 all: $(NAME)
 
