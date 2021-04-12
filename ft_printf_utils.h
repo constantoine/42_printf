@@ -17,8 +17,8 @@
 #  define BUFFER_SIZE 4096
 # endif
 
-#include <stddef.h>
-#include "format.h"
+# include <stddef.h>
+# include "format.h"
 
 typedef	struct	s_buffer
 {
