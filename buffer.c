@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft.h"
+#include "ft_printf_utils.h"
+#include "libft/libft.h"
 #include <unistd.h>
 
 int		buffer_flush(t_printf *pf)

@@ -13,6 +13,10 @@
 #ifndef CONV_H
 # define CONV_H
 
+# include <stdarg.h>
+# include <stdint.h>
+# include "ft_printf_utils.h"
+
 void			conv_d(t_printf *pf, va_list args);
 void			conv_i(t_printf *pf, va_list args);
 void			conv_u(t_printf *pf, va_list args);

@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "format.h"
-#include "ft_printf.h"
+#include "libft/libft.h"
+#include "ft_printf_utils.h"
 
 void	conv_c(t_printf *pf, va_list args)
 {

@@ -13,6 +13,9 @@
 #include "ft_printf.h"
 #include "conv.h"
 #include "parse_format.h"
+#include "format.h"
+#include "libft/libft.h"
+#include <stdarg.h>
 #include <stdio.h>
 
 void		conv(t_printf *pf, va_list args)

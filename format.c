@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "format.h"
+#include "libft/libft.h"
 #include <limits.h>
 
 int	parse_flags(t_format *format, const char *str_format)

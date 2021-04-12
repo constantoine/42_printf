@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdint.h>
-# include "libft.h"
 
 /*
 ** Constant used to calculate argument lenght
